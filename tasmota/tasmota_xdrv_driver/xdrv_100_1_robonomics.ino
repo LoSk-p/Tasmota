@@ -273,7 +273,7 @@ void CmdSend_Datalog(void)
   } else {
     res = robonomics.sendDatalogRecord(XdrvMailbox.data);
   }
-  ResponseCmndChar_P(res);
+  ResponseCmndChar(res);
 }
 
 void CmdUse_RWS(void)
@@ -486,11 +486,12 @@ bool Xdrv100(uint32_t function)
     {
 #ifdef USE_WEBSERVER
     case FUNC_WEB_ADD_MAIN_BUTTON:
-      if (XdrvMailbox.index) {
-        XdrvMailbox.index++;
-      } else {
-        WSContentSend_PD(HTTP_BTN_MENU_ROBONOMICS);
-      }
+      // if (XdrvMailbox.index) {
+      //   XdrvMailbox.index++;
+      // } else {
+      //   WSContentSend_PD(HTTP_BTN_MENU_ROBONOMICS);
+      // }
+      WSContentSend_PD(HTTP_BTN_MENU_ROBONOMICS);
       break;
     case FUNC_WEB_ADD_HANDLER:
         WebServer_on(PSTR("/" WEB_HANDLE_ROBONOMICS), HandleRobonomicsConfiguration);
