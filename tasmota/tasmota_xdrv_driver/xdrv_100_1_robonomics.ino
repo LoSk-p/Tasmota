@@ -49,8 +49,6 @@ Robonomics robonomics;
 // This variable will be set to true after initialization
 bool initSuccess = false;
 
-"PrintAddress|SendDatalog|GeneratePrivateKey|UseRWS|SetRWSOwner|SetEndpointHost|GetParams"
-
 /*
   Commands:
     PrintAddress         - Return and print ESP Robonomics address
