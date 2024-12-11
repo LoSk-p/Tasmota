@@ -330,7 +330,6 @@ void CmdGet_Params(void)
 void RobonomicsInit()
 {
   AddLog(LOG_LEVEL_DEBUG_MORE, PSTR("Robonomics init..."));
-  RobonomicsPublicKey public_key;
   initializeNVS();
 
   if (!loadBool(USE_RWS_STORAGE_KEY, &use_rws)) {
@@ -363,8 +362,6 @@ void RobonomicsInit()
     Ed25519::generatePrivateKey(robonomicsPrivateKey);
     savePrivateKey(robonomicsPrivateKey, sizeof(robonomicsPrivateKey));
   }
-  Ed25519::derivePublicKey(robonomicsPublicKey, robonomicsPrivateKey);
-  memcpy(public_key.bytes, robonomicsPublicKey, PUBLIC_KEY_LENGTH);
   robonomics.setPrivateKey(robonomicsPrivateKey);
   robonomics.setup(robonomics_host);
   initSuccess = true;
@@ -486,11 +483,6 @@ bool Xdrv100(uint32_t function)
     {
 #ifdef USE_WEBSERVER
     case FUNC_WEB_ADD_MAIN_BUTTON:
-      // if (XdrvMailbox.index) {
-      //   XdrvMailbox.index++;
-      // } else {
-      //   WSContentSend_PD(HTTP_BTN_MENU_ROBONOMICS);
-      // }
       WSContentSend_PD(HTTP_BTN_MENU_ROBONOMICS);
       break;
     case FUNC_WEB_ADD_HANDLER:
