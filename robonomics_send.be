@@ -13,7 +13,7 @@ class RobonomicsSender
   def init()
     self.delay_mins = 10
     self.delay = self.delay_mins * 60
-    self.seconds_from_last_send = self.delay - 10
+    self.seconds_from_last_send = 0
     self.last_tx_time = "nil"
     self.last_tx_result = "nil"
     self.value_saved = false
